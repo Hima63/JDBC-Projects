@@ -1,0 +1,64 @@
+package mypackage;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class Recordhandling {
+	
+	public void createData() {
+		try {
+			String url = "jdbc:mysql://localhost:3306/";
+		     String db = "college";
+			String userName = "root";
+			String password = "bindu@630947";
+			
+			Connection conn = DriverManager.getConnection(url+db,userName, password);
+			String query = "INSERT into student (sid, sname, semail) VALUES (?,?,?)";
+			
+			PreparedStatement pstm = conn.prepareStatement(query);
+			pstm.setInt(1, 17);
+			pstm.setString(2, "conrad");
+			pstm.setString(3, "conrad12@gmail.com");
+			
+			pstm.execute();
+			System.out.println("data inserted successfully");
+			conn.close();
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	public void readData() {
+		try {
+			String url = "jdbc:mysql://localhost:3306/";
+		     String db = "college";
+			String userName = "root";
+			String password = "bindu@630947";
+			
+			Connection conn = DriverManager.getConnection(url+db,userName, password);
+			String query = "Select * from student";
+			Statement stm = conn.createStatement();
+			
+			ResultSet rs = stm.executeQuery(query);
+			while(rs.next()) {
+				System.out.println("sid = "+rs.getInt(1));
+				System.out.println("sname = "+rs.getString(2));
+				System.out.println("semail = "+rs.getString(3));
+			}
+			
+		    System.out.println("read successfully ");
+			conn.close();
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}
