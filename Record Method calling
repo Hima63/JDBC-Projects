@@ -1,0 +1,16 @@
+package mypackage;
+
+public class B {
+	
+public static void main(String[] args) {
+		
+	Recordhandling rh = new Recordhandling();
+		
+		rh.createData();
+	     
+		rh.readData();
+		
+	}
+
+
+}
